@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Do You Love Me?</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fbc2eb);
+      animation: bgAnimation 6s infinite alternate;
+      overflow: hidden;
+    }
+
+    @keyframes bgAnimation {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px 50px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #ff6b6b;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 10px 0;
+      color: #555;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    button {
+      font-size: 1.2rem;
+      padding: 15px 30px;
+      color: white;
+      background: #ff6b6b;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    button:hover {
+      background: #ff3b3b;
+    }
+
+    button.no {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Do You Love Me? ❤️</h1>
+    <p>Answer honestly! 😜</p>
+    <div class="buttons">
+      <button class="yes" onclick="handleYes()">Yes</button>
+      <button class="no" onmouseover="moveNoButton()">No</button>
+    </div>
+  </div>
+
+  <script>
+    const noButton = document.querySelector('.no');
+
+    function moveNoButton() {
+      const container = document.querySelector('.container');
+      const containerRect = container.getBoundingClientRect();
+      const noButtonRect = noButton.getBoundingClientRect();
+
+      // Generate new random position within the container
+      const newTop = Math.random() * (containerRect.height - noButtonRect.height);
+      const newLeft = Math.random() * (containerRect.width - noButtonRect.width);
+
+      noButton.style.position = 'absolute';
+      noButton.style.top = `${newTop}px`;
+      noButton.style.left = `${newLeft}px`;
+    }
+
+    function handleYes() {
+      const container = document.querySelector('.container');
+      container.innerHTML = `
+        <h1>Congrats! 🥰</h1>
+        <p>Now...!</p>
+        <p>Let’s create a beautiful story together. ❤️</p>
+      `;
+      container.style.animation = "fadeIn 1s ease-out";
+    }
+  </script>
+</body>
+</html>
